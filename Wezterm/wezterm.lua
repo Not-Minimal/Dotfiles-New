@@ -15,9 +15,9 @@ local function apply_theme_by_appearance()
 
 	if is_dark then
 		config.color_scheme = "Nightfox"
-		config.window_background_opacity = 0.96
-		config.macos_window_background_blur = 0
-		config.colors = config.colors or {}
+		config.window_background_opacity = 0.7
+		config.macos_window_background_blur = 10
+		config.colors = config.colors or { cursor_bg = "#7aa2f7", cursor_border = "#7aa2f7" }
 		config.colors.foreground = "#eceff4"
 		config.colors.selection_bg = "#3b4252"
 		config.colors.selection_fg = "#eceff4"
@@ -50,8 +50,8 @@ apply_theme_by_appearance()
 
 -- Window decorations y padding
 config.window_decorations = "RESIZE|INTEGRATED_BUTTONS"
-config.window_padding = { left = 16, right = 8, top = 24, bottom = 24 }
-
+config.window_padding = { left = 18, right = 18, top = 64, bottom = 18 }
+config.enable_tab_bar = false
 -- Cursor
 config.default_cursor_style = "BlinkingBar"
 config.cursor_blink_rate = 700
@@ -96,6 +96,16 @@ local keys = {
 		key = ",",
 		mods = "CMD",
 		action = action.SpawnCommandInNewTab({ cwd = wezterm.home_dir, args = { "zed", wezterm.config_file } }),
+	},
+	{
+		key = "w",
+		mods = "CMD",
+		action = wezterm.action.CloseCurrentPane({ confirm = false }),
+	},
+	{
+		key = "k",
+		mods = "CMD",
+		action = wezterm.action.SendString("Clear\n"),
 	},
 	-- Alternativa absoluta si Zed no está en PATH (descomenta y comenta la anterior si la necesitas)
 	-- {

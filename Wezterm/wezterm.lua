@@ -107,15 +107,6 @@ local keys = {
 		mods = "CMD",
 		action = wezterm.action.SendString("Clear\n"),
 	},
-	-- Alternativa absoluta si Zed no está en PATH (descomenta y comenta la anterior si la necesitas)
-	-- {
-	--   key = ",",
-	--   mods = "CMD",
-	--   action = action.SpawnCommandInNewTab({
-	--     cwd = wezterm.home_dir,
-	--     args = { "/Applications/Zed.app/Contents/MacOS/zed", wezterm.config_file },
-	--   }),
-	-- },
 }
 
 config.keys = keys

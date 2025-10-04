@@ -36,8 +36,8 @@ local function apply_theme_by_appearance()
 	-- ajusta valores conservadores
 	if is_dark then
 		config.color_scheme = "Nightfox"
-		config.window_background_opacity = 0.85
-		config.macos_window_background_blur = 12
+		config.window_background_opacity = 0.75
+		config.macos_window_background_blur = 22
 		config.colors = config.colors or {}
 		-- Cursor visible con buen contraste en fondo oscuro
 		config.colors.cursor_bg = "#7aa2f7"

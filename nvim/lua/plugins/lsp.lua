@@ -132,6 +132,15 @@ return {
                         },
                     },
                 },
+                markdown_oxide = {
+                    capabilities = {
+                        workspace = {
+                            didChangeWatchedFiles = {
+                                dynamicRegistration = true,
+                            },
+                        },
+                    },
+                },
             },
             setup = {},
         },

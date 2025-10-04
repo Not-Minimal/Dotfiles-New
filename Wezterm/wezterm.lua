@@ -65,7 +65,7 @@ apply_theme_by_appearance()
 -- Decoraciones y padding: top grande puede afectar maximizar; usa padding adaptativo
 config.window_decorations = "RESIZE|INTEGRATED_BUTTONS"
 config.enable_tab_bar = false
-config.window_padding = { left = 18, right = 18, top = 64, bottom = 18 }
+config.window_padding = { left = 24, right = 24, top = 64, bottom = 18 }
 
 -- Cursor
 config.default_cursor_style = "BlinkingBar"

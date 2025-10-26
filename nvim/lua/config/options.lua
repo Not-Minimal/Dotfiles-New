@@ -1,5 +1,11 @@
 vim.g.mapleader = " "
 
+-- Configuración de Rust
+-- LSP Server para Rust: "rust-analyzer" o "bacon-ls"
+-- rust-analyzer: Proporciona todas las funcionalidades LSP incluyendo diagnósticos
+-- bacon-ls: Solo para diagnósticos (el resto del LSP sigue siendo rust-analyzer)
+vim.g.lazyvim_rust_diagnostics = "rust-analyzer"
+
 vim.opt.encoding = "utf-8"
 vim.opt.fileencoding = "utf-8"
 

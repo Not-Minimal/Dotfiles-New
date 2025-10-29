@@ -1,0 +1,92 @@
+
+
+# ~/.config/aerospace/aerospace.toml
+
+# ---------- GENERAL ----------
+start-at-login = true
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+
+# ---------- GAPS ----------
+[gaps]
+inner.horizontal = 8
+inner.vertical = 8
+outer.left = 8
+outer.bottom = 8
+outer.top = 28
+outer.right = 8
+
+# ---------- APP → WORKSPACE RULES ----------
+# WezTerm → Workspace 1
+[[on-window-detected]]
+if.app-id = "com.github.wez.wezterm"
+run = "move-node-to-workspace 1"
+
+# Spotify → Workspace 3
+[[on-window-detected]]
+if.app-id = "com.spotify.client"
+run = "move-node-to-workspace 3"
+
+# WhatsApp → Workspace 4
+[[on-window-detected]]
+if.app-id = "net.whatsapp.WhatsApp"
+run = "move-node-to-workspace 4"
+
+# Dia → Workspace 5 con comportamiento especial
+[[on-window-detected]]
+if.app-id = "company.thebrowser.dia"
+run = "move-node-to-workspace 5"
+
+[[on-window-detected]]
+if.app-id = "md.obsidian"
+run = "move-node-to-workspace 6"
+[[on-window-detected]]
+if.app-id = "com.apple.finder"
+run = "move-node-to-workspace 7"
+# ---------- MAIN MODE ----------
+[mode.main.binding]
+cmd-shift-h = 'move left'
+cmd-shift-j = 'move down'
+cmd-shift-k = 'move up'
+cmd-shift-l = 'move right'
+
+cmd-shift-1 = ['move-node-to-workspace 1', 'workspace 1']
+cmd-shift-2 = ['move-node-to-workspace 2', 'workspace 2']
+cmd-shift-3 = ['move-node-to-workspace 3', 'workspace 3']
+cmd-shift-4 = ['move-node-to-workspace 4', 'workspace 4']
+cmd-shift-5 = ['move-node-to-workspace 5', 'workspace 5']
+cmd-shift-6 = ['move-node-to-workspace 6', 'workspace 6']
+cmd-shift-7 = ['move-node-to-workspace 7', 'workspace 7']
+
+cmd-space = 'layout floating tiling'
+cmd-minus = 'resize smart -50'
+cmd-equal = 'resize smart +50'
+cmd-0 = 'balance-sizes'
+
+cmd-ctrl-h = 'focus-monitor left'
+cmd-ctrl-l = 'focus-monitor right'
+
+cmd-tab = 'workspace-back-and-forth'
+cmd-ctrl-left = 'workspace --wrap-around prev'
+cmd-ctrl-right = 'workspace --wrap-around next'
+
+cmd-shift-r = 'mode resize'
+cmd-shift-e = 'mode service'
+cmd-shift-c = 'reload-config'
+
+# ---------- RESIZE MODE ----------
+[mode.resize.binding]
+h = 'resize width -50'
+j = 'resize height +50'
+k = 'resize height -50'
+l = 'resize width +50'
+enter = 'mode main'
+esc = 'mode main'
+
+# ---------- SERVICE MODE ----------
+[mode.service.binding]
+r = ['flatten-workspace-tree', 'mode main']
+f = ['layout floating tiling', 'mode main']
+esc = ['reload-config', 'mode main']
+backspace = ['close-all-windows-but-current', 'mode main']

@@ -1,4 +1,6 @@
 return {
+    -- Plugin nightfox comentado para usar solo colores de terminal
+    --[[
 	{
 		"EdenEast/nightfox.nvim",
 		lazy = false,
@@ -37,4 +39,5 @@ return {
 			vim.cmd("colorscheme nightfox")
 		end,
 	},
+	--]]
 }

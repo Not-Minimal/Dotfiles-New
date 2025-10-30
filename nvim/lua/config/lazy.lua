@@ -18,7 +18,7 @@ require("lazy").setup({
             "LazyVim/LazyVim",
             import = "lazyvim.plugins",
             opts = {
-                colorscheme = "nightfox",
+                -- colorscheme = "nightfox",  -- Comentado para usar solo colores de terminal
                 news = {
                     lazyvim = true,
                     neovim = true,

@@ -17,4 +17,4 @@ vim.cmd("hi SignColumn guibg=NONE ctermbg=NONE")
 vim.cmd("hi MsgArea guibg=NONE ctermbg=NONE")
 vim.cmd("hi TelescopeNormal guibg=NONE ctermbg=NONE")
 vim.cmd("hi NeoTreeNormal guibg=NONE ctermbg=NONE")
-vim.cmd("colorscheme nightfox")
+-- vim.cmd("colorscheme nightfox")  -- Comentado para usar solo colores de terminal

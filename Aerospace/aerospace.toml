@@ -74,6 +74,7 @@ cmd-ctrl-right = 'workspace --wrap-around next'
 cmd-shift-r = 'mode resize'
 cmd-shift-e = 'mode service'
 cmd-shift-c = 'reload-config'
+cmd-shift-t = 'mode layout'
 
 # ---------- RESIZE MODE ----------
 [mode.resize.binding]
@@ -90,3 +91,33 @@ r = ['flatten-workspace-tree', 'mode main']
 f = ['layout floating tiling', 'mode main']
 esc = ['reload-config', 'mode main']
 backspace = ['close-all-windows-but-current', 'mode main']
+
+# ---------- LAYOUT MODE ----------
+# Modo para organizar ventanas en layouts específicos
+# Presiona cmd-shift-t para entrar a este modo
+[mode.layout.binding]
+
+# '3' = Layout óptimo para 3+ ventanas: 1 grande izquierda + 2 apiladas derecha
+# INSTRUCCIONES:
+#   1. Asegúrate de que la ventana que quieres a la IZQUIERDA esté enfocada
+#   2. Presiona cmd-shift-t, luego presiona '3'
+3 = ['exec-and-forget ~/.config/aerospace/layout-3-windows.sh', 'mode main']
+
+# 'r' = Reset/flatten - todas las ventanas en una fila horizontal
+r = ['flatten-workspace-tree', 'mode main']
+
+# 'h' = Unir ventana actual con la de la izquierda (crear columna vertical)
+h = ['join-with left', 'mode main']
+
+# 'j' = Unir ventana actual con la de abajo
+j = ['join-with down', 'mode main']
+
+# 'k' = Unir ventana actual con la de arriba
+k = ['join-with up', 'mode main']
+
+# 'l' = Unir ventana actual con la de la derecha (crear columna vertical)
+l = ['join-with right', 'mode main']
+
+# Salir del modo
+esc = 'mode main'
+enter = 'mode main'

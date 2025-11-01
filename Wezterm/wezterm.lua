@@ -3,6 +3,11 @@ local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 local act = wezterm.action
 
+-- Intentar cargar el plugin de Rosé Pine con manejo de errores
+local rose_pine_ok, rose_pine = pcall(function()
+	return wezterm.plugin.require('https://github.com/neapsix/wezterm')
+end)
+
 -- Entrada y composición: Option compone, sin dead keys
 config.send_composed_key_when_left_alt_is_pressed = true
 config.send_composed_key_when_right_alt_is_pressed = true
@@ -27,33 +32,37 @@ config.font_size = 13.0
 config.line_height = 1.10
 config.cell_width = 1.10
 
--- Tema por apariencia del sistema con overrides seguros
+-- Tema Rosé Pine por apariencia del sistema
 local function apply_theme_by_appearance()
 	local appearance = wezterm.gui.get_appearance()
 	local is_dark = appearance and appearance:find("Dark")
 
-	-- Nota: blur alto con opacidad baja puede degradar performance,
-	-- ajusta valores conservadores
-	if is_dark then
-		config.color_scheme = "Nightfox"
-		config.macos_window_background_blur = 20
-		config.colors = config.colors or {}
-		-- Cursor visible con buen contraste en fondo oscuro
-		config.colors.cursor_bg = "#7aa2f7"
-		config.colors.cursor_border = "#7aa2f7"
-		config.colors.foreground = "#D8DEE9"
-		config.colors.selection_bg = "#3b4252"
-		config.colors.selection_fg = "#ECEFF4"
+	if rose_pine_ok and rose_pine then
+		-- Si el plugin se cargó correctamente, usar Rosé Pine
+		local theme
+		if is_dark then
+			-- Rosé Pine Main (oscuro)
+			theme = rose_pine.main
+			config.macos_window_background_blur = 20
+		else
+			-- Rosé Pine Dawn (claro)
+			theme = rose_pine.dawn
+			config.macos_window_background_blur = 10
+		end
+
+		-- Aplicar colores del tema Rosé Pine
+		config.colors = theme.colors()
+		config.window_frame = theme.window_frame()
 	else
-		config.color_scheme = "Terafox"
-		config.macos_window_background_blur = 10
-		config.colors = config.colors or {}
-		-- Mantén contraste de selección en tema claro
-		config.colors.selection_bg = "#d8dee9"
-		config.colors.selection_fg = "#2e3440"
-		-- cursor azulado para visibilidad en claro
-		config.colors.cursor_bg = "#1D4ED8"
-		config.colors.cursor_border = "#1D4ED8"
+		-- Fallback: usar los color schemes built-in de WezTerm
+		wezterm.log_error("No se pudo cargar Rosé Pine plugin, usando fallback")
+		if is_dark then
+			config.color_scheme = "rose-pine"
+			config.macos_window_background_blur = 20
+		else
+			config.color_scheme = "rose-pine-dawn"
+			config.macos_window_background_blur = 10
+		end
 	end
 end
 
